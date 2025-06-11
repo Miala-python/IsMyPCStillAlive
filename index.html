@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is my PC still alive?</title>
+    <title id="dynamic-title">Is my PC still alive?</title>
     <style>
         * {
             margin: 0;
@@ -198,27 +198,18 @@
     <script>
         // Fonction pour animer le titre de la page
         function animateTitle() {
-            const baseTitle = "Is my PC still in live?";
+            const baseTitle = "Is my PC still alive?";
             const indicators = ["|", "/", "—", "\\"];
-            const statuses = ["Running...", "Active", "Working", "Monitoring"];
-            const emojis = ["🚀", "💻", "⚡", "🔍", "✅", "👁️"];
+            
             
             let counter = 0;
             
             setInterval(() => {
                 // Animation pour le titre de la page (onglet)
                 const indicator = indicators[counter % indicators.length];
-                document.title = `${baseTitle} ${indicator}`;
+                document.title = `${indicator} ${baseTitle}`;
                 
-                // Animation pour le titre principal
-                const title = document.getElementById('dynamic-title');
-                const status = statuses[counter % statuses.length];
-                const emoji = emojis[Math.floor(Math.random() * emojis.length)];
-                
-                title.innerHTML = `
-                    ${baseTitle} 
-                    <span class="title-change-indicator">${status} ${emoji}</span>
-                `;
+           
                 
                 counter++;
             }, 500);
