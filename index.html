@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is my PC still alive?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .glowing-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(43, 88, 118, 0.4) 0%, rgba(26, 42, 108, 0) 70%);
+            z-index: -1;
+        }
+    
+        
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+            letter-spacing: 2px;
+        }
+        
+        
+        .subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            line-height: 1.6;
+            color: #a0d2eb;
+        }
+        
+        /* Barre de progression */
+        .progress-container {
+            width: 100%;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            margin: 3rem 0;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, #00c6ff, #0072ff);
+            border-radius: 20px;
+            position: relative;
+            animation: load 3s infinite linear;
+            box-shadow: 0 0 20px rgba(0, 114, 255, 0.5);
+        }
+        
+        @keyframes load {
+            0% { width: 0; left: 0; }
+            50% { width: 100%; left: 0; }
+            100% { width: 0; left: 100%; }
+        }
+        
+        .progress-bar::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .instructions {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border-left: 4px solid #00c6ff;
+        }
+        
+        .instructions h3 {
+            margin-bottom: 1rem;
+            color: #00c6ff;
+        }
+        
+        .instructions p {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+        
+        .pc-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            padding: 0.8rem;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .status-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background-color: #0f0;
+            box-shadow: 0 0 10px #0f0;
+            margin-right: 10px;
+            animation: pulse-status 1.5s infinite;
+        }
+        
+        @keyframes pulse-status {
+            0% { box-shadow: 0 0 5px #0f0; }
+            50% { box-shadow: 0 0 15px #0f0; }
+            100% { box-shadow: 0 0 5px #0f0; }
+        }
+        
+        footer {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .subtitle { font-size: 1.1rem; }
+            .container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="glowing-background"></div>
+    
+    <div class="container">
+        <h1>Is my PC still in live?</h1>
+        <p class="subtitle">Cette barre de chargement animée fonctionnera en continu. Si votre PC freeze, l'animation s'arrêtera et vous pourrez constater le problème.</p>
+        
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+        
+        <div class="pc-status">
+            <div class="status-indicator"></div>
+            <div>Statut PC: <strong>FONCTIONNEL</strong> - Barre de chargement active</div>
+        </div>
+        
+        <div class="instructions">
+            <h3>Comment utiliser ce site:</h3>
+            <p>1. Gardez cette page ouverte pendant que vous utilisez votre PC</p>
+            <p>2. Si votre PC freeze, l'animation de la barre de chargement s'arrêtera ou le titre ne changera plus.</p>
+            <p>3. Si le tout reste figé, votre PC a probablement freeze</p>
+        </div>
+    </div>
+    
+    <footer>
+        Conçu pour détecter les freezes de PC - Actualisez la page pour réinitialiser
+    </footer>
+</body>
+</html>
