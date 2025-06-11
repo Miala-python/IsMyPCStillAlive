@@ -171,7 +171,7 @@
     <div class="glowing-background"></div>
     
     <div class="container">
-        <h1>Is my PC still in live?</h1>
+        <h1>Is my PC still alive?</h1>
         <p class="subtitle">Cette barre de chargement animée fonctionnera en continu. Si votre PC freeze, l'animation s'arrêtera et vous pourrez constater le problème.</p>
         
         <div class="progress-container">
@@ -194,5 +194,38 @@
     <footer>
         Conçu pour détecter les freezes de PC - Actualisez la page pour réinitialiser
     </footer>
+
+    <script>
+        // Fonction pour animer le titre de la page
+        function animateTitle() {
+            const baseTitle = "Is my PC still in live?";
+            const indicators = ["|", "/", "—", "\\"];
+            const statuses = ["Running...", "Active", "Working", "Monitoring"];
+            const emojis = ["🚀", "💻", "⚡", "🔍", "✅", "👁️"];
+            
+            let counter = 0;
+            
+            setInterval(() => {
+                // Animation pour le titre de la page (onglet)
+                const indicator = indicators[counter % indicators.length];
+                document.title = `${baseTitle} ${indicator}`;
+                
+                // Animation pour le titre principal
+                const title = document.getElementById('dynamic-title');
+                const status = statuses[counter % statuses.length];
+                const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+                
+                title.innerHTML = `
+                    ${baseTitle} 
+                    <span class="title-change-indicator">${status} ${emoji}</span>
+                `;
+                
+                counter++;
+            }, 500);
+        }
+        
+        // Démarrer l'animation du titre au chargement de la page
+        window.addEventListener('load', animateTitle);
+    </script>
 </body>
 </html>
